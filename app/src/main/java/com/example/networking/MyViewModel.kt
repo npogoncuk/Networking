@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.networking.network.ReceivedJSON
 import com.example.networking.network.ResultsApi
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -12,8 +13,8 @@ enum class ResultsApiStatus { LOADING, ERROR, DONE }
 
 class MyViewModel : ViewModel() {
 
-    private val _result = MutableLiveData<String>()
-    val result: LiveData<String> = _result
+    private val _result = MutableLiveData<ReceivedJSON>()
+    val result: LiveData<ReceivedJSON> = _result
 
     private val _status = MutableLiveData<ResultsApiStatus>()
     val status: LiveData<ResultsApiStatus> = _status
@@ -26,11 +27,10 @@ class MyViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = ResultsApiStatus.LOADING
             try {
-                _result.value = ResultsApi.retrofitService.getJson().info.toString()
+                _result.value = ResultsApi.retrofitService.getJson()
                 _status.value = ResultsApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResultsApiStatus.ERROR
-                _result.value = ""
             }
         }
     }

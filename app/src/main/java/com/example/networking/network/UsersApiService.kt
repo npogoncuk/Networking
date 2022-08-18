@@ -18,7 +18,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ResultsApiService {
-    @GET("/api?page=3&results=2")
+    @GET("/api?page=3&results=10")
     suspend fun getJson(): ReceivedJSON
 }
 
