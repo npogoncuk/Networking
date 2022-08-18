@@ -26,7 +26,7 @@ class MyViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = ResultsApiStatus.LOADING
             try {
-                _result.value = ResultsApi.retrofitService.getJson()
+                _result.value = ResultsApi.retrofitService.getJson().info.toString()
                 _status.value = ResultsApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResultsApiStatus.ERROR

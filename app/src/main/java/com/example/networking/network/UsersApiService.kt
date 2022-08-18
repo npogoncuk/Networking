@@ -13,13 +13,13 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())  //MoshiConverterFactory.create(moshi))
+    .addConverterFactory(MoshiConverterFactory.create(moshi))    //ScalarsConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()
 
 interface ResultsApiService {
     @GET("/api?page=3&results=2")
-    suspend fun getJson(): String
+    suspend fun getJson(): ReceivedJSON
 }
 
 object ResultsApi {
