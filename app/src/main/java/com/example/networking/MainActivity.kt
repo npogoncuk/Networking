@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.example.networking.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private val viewModel: MyViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.photosGrid.adapter = Adapter()
+        binding.recycler.adapter = Adapter()
         setContentView(binding.root)
     }
 }

@@ -31,6 +31,7 @@ class MyViewModel : ViewModel() {
                 _status.value = ResultsApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ResultsApiStatus.ERROR
+                _result.value?.results?.clear()
             }
         }
     }
